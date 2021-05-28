@@ -4,7 +4,7 @@ $(function() {
     //Set element IDs for noUiSlider
     sliderwrapper.children().remove();//Remove children from slider wrapper
     sliderwrapper.append('<div id="slider"></div>');
-    var slider = document.getElementById('zoomslider');
+    var slider = document.getElementById('slider');
     //Create sliders based on events number
     //Create slider
     noUiSlider.create(slider, {
