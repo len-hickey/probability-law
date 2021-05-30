@@ -1,5 +1,18 @@
 $(function() {
 
+
+    //TABS
+    $('.tabs-wrapper').on('click', '.tab-button', function() {
+    var tabbuttonwrapper = $(this).closest('.tab-button-wrapper');
+    var tabswrapper = $(this).closest('.tabs-wrapper');
+    var tabindex = tabbuttonwrapper.children('.tab-button').index(this);
+    tabswrapper.find('.tab-button').removeClass('js-active');
+    tabswrapper.find('.tab-content').removeClass('js-visible');
+    $(this).addClass('js-active');
+    tabswrapper.find('.tab-content').eq(tabindex).addClass('js-visible');
+    });
+
+    //Slider
     var sliderwrapper = $('.slider-wrapper');
     //Set element IDs for noUiSlider
     sliderwrapper.children().remove();//Remove children from slider wrapper
