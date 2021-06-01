@@ -81,13 +81,13 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 /* Slider size and handle placement*/
 .noUi-horizontal {
-  height: 18px;
+  height: 40px;
 }
 .noUi-horizontal .noUi-handle {
-  width: 34px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   left: -17px;
-  top: -6px;
+  top: -11px;
 }
 .noUi-vertical {
   width: 16px;
@@ -119,10 +119,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   cursor: ew-resize;
 }
 .noUi-vertical .noUi-draggable {
-  cursor: ns-resize !important;
+  cursor: ns-resize;
 }
 .noUi-handle {/*EDITED*/
   border: 1px solid #16eb96;
+  cursor: grab;
   border-radius: 50%;
   background: #16eb96;
   box-shadow: 0 3px 6px -3px #BBB;
@@ -131,6 +132,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   box-shadow: 0 3px 6px -3px #BBB, 0 0 0 1px #16eb96;
 }
 .noUi-active {
+  cursor: grabbing;
   box-shadow: 0 3px 6px -3px #BBB;
 }
 /*Handle stripes
