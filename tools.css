@@ -85,7 +85,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 .noUi-horizontal .noUi-handle {
   width: 34px;
-  height: 28px;
+  height: 32px;
   left: -17px;
   top: -7px;
 }
@@ -109,10 +109,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
 }
 
-.noUi-horizontal .noUi-target {
+.noUi-horizontal.noUi-target {
   background: #FAFAFA;
   border-radius: 0px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #E2e2e2;
   box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
 }
 
@@ -178,7 +178,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   content: "";
   display: block;
   position: absolute;
-  height: 14px;
+  height: 17px;
   width: 1px;
   background: #E8E7E6;
   left: 17px;
