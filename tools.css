@@ -87,7 +87,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   width: 34px;
   height: 28px;
   left: -17px;
-  top: -6px;
+  top: -7px;
 }
 .noUi-vertical {
   width: 16px;
@@ -108,6 +108,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   border: 1px solid #D3D3D3;
   box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
 }
+
+.noUi-horizontal .noUi-target {
+  background: #FAFAFA;
+  border-radius: 0px;
+  border: 1px solid #D3D3D3;
+  box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+
 .noUi-connects {
   border-radius: 3px;
 }
@@ -115,8 +123,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   background: #e6f2ff;
 }
 /* Handles and cursors*/
-.noUi-draggable {
-  cursor: ew-resize;
+.noUi-horizontal .noUi-draggable,
+.noUi-horizontal .noUi-handle {
+  cursor: ew-resize !important;
 }
 .noUi-vertical .noUi-draggable {
   cursor: ns-resize !important;
@@ -169,11 +178,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   height: 14px;
   width: 1px;
   background: #E8E7E6;
-  left: 14px;
+  left: 17px;
   top: 6px;
 }
 .noUi-horizontal .noUi-handle:after {
-  left: 11px;
+  left: 14px;
 }
 
 /*Disabled state*/
