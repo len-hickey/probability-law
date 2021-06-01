@@ -21,7 +21,7 @@ $(function() {
     //Create sliders based on events number
     //Create slider
     noUiSlider.create(slider, {
-    start: 0,
+    start: 50,
     step: 1,
     range: {
         'min': 0,
