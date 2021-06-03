@@ -46,15 +46,17 @@ $(function() {
     //Hide dropdown if click outside
     $(document).on('click', function (e) {
         if(!$(e.target).closest('.dropdown').length) {
-        hidealldropdownsandtooltips()
-        //Remove context menu class
-        $('.js-context-menu').removeClass('js-context-menu');
+            $('.dropdown-menu').removeClass('js-visible');
+            $('.dropdown-toggle').children().removeClass('js-active');
+            $('.tooltip').removeClass('js-visible');
         }
     });
     //Hide dropdown if click non-disabled button primary in dropdown menu
     $(document).on('click', '.dropdown-menu .button-primary',  function (e) {
         if(!$(e.target).hasClass('js-disabled')) {
-        hidealldropdownsandtooltips()
+            $('.dropdown-menu').removeClass('js-visible');
+            $('.dropdown-toggle').children().removeClass('js-active');
+            $('.tooltip').removeClass('js-visible');
         }
     });
 
@@ -123,7 +125,7 @@ $(function() {
     //ON FOCUS EVENT NAME
     $('.plan-wrapper').on('click focus', '.event-name', function() {
         $(this).siblings('.event-arrow').addClass('js-opaque-1');
-        animateeventpath($(this));
+        //animateeventpath($(this));
     });
     $('.plan-wrapper').on('blur', '.event-name', function() {
         $('.event-arrow').removeClass('js-opaque-1');
