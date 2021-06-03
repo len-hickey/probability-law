@@ -1,5 +1,14 @@
 
 
+/*Text ellipsis overflow*/
+input,
+select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
 
 /**********************************nouislider-14.0.2-6/28/2019**********************************/
 .noUi-target,
