@@ -9,6 +9,53 @@ select {
   display: block;
 }
 
+/*Card interaction classes*/
+.plan-wrapper.js-card-active {
+  overflow: hidden !important;
+}
+.card-shadow,
+.card.js-card-active .card,
+.card.js-card-active .end-card,
+.card.js-card-hover .card,
+.card.js-card-hover .end-card {
+  z-index: -1;
+  pointer-events: none !important;
+}
+.card.js-card-active {
+  z-index: 200;
+}
+.card:before {
+  content: '';
+  background: white;
+  opacity: 0;
+  z-index: 0;
+}
+.card.js-card-active:before {
+  content: '';
+  position: absolute;
+  top: -9999vh;
+  left: -9999vw;
+  right: -9999vw;
+  bottom: -9999vh;
+}
+.card.js-card-hover > .card-shadow,
+.card.js-card-active > .card-shadow {
+  opacity: 1;
+  z-index: 0;
+}
+.event.js-event-active > .event-details {
+  z-index: 100;
+}
+.card.js-card-active > .card-header,
+.card.js-card-hover > .card-header {
+  z-index: 100;
+}
+.card.js-card-hover > .event > .event-details > .event-probability,
+.card.js-card-hover > .card-header,
+.card.js-card-active > .event > .event-details > .event-probability,
+.card.js-card-active > .card-header {
+  opacity: 1 !important;
+}
 
 /**********************************nouislider-14.0.2-6/28/2019**********************************/
 .noUi-target,
