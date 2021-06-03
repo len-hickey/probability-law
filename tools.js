@@ -71,16 +71,10 @@ $(function() {
         sliderwrapper.append('<div id="probabilityslider" style="height: 200px"></div>');
         var slider = document.getElementById('probabilityslider');
         //Create sliders based on events number
-        var handlesarray = [];
-        var handleposition = 0;
-        for(i = 0; i < eventsnumber - 1; i++) {//Need -1 because handles is 1 less than event number
-            var probability = parseFloat(events.eq(i).attr('data-eventprobability'));
-            handleposition += probability;
-            handlesarray.push(handleposition);
-        }
+        var probability = parseFloat(events.eq(0).attr('data-eventprobability'));
         //Create slider
         noUiSlider.create(slider, {
-            start: handlesarray,
+            start: probability,
             step: 0.01,
             range: {
             'min': 0,
@@ -96,9 +90,10 @@ $(function() {
             for(i = 0; i < 2; i++) {
                 var probability;
                 if(i === 0) {probability = values[0]};
-                if(i === 1) {probability = 1 - values[i-1]};
+                if(i === 1) {probability = 1 - values[0]};
                 var formattedprobability = (probability * 100).toLocaleString(undefined, {maximumFractionDigits: 0});
                 events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
+                events.eq(i).attr('data-eventprobability', probability)
             }
         });
     });
@@ -177,6 +172,6 @@ $(function() {
         $('.event-arrow').css({'top':'', 'bottom':''});
     });
 
-
+    
 
 });//END
