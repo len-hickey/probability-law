@@ -60,6 +60,50 @@ $(function() {
         }
     });
 
+    //EDIT PROBABILITIES
+    $('.plan-wrapper').on('click', '.card-menu-button', function() {
+        var card = $(this).closest('.card');
+        var events = card.children('.event');
+        var cardheader = $(this).closest('.card-header');
+        var probmenu = cardheader.find('.edit-probabilities-menu');
+        var sliderwrapper = probmenu.find('.edit-probabilities-slider-wrapper');
+        $('.edit-probabilities-slider-wrapper').children().remove();//Remove children from all slider wrappers
+        sliderwrapper.append('<div id="probabilityslider" style="height: 200px"></div>');
+        var slider = document.getElementById('probabilityslider');
+        //Create sliders based on events number
+        var handlesarray = [];
+        var handleposition = 0;
+        for(i = 0; i < eventsnumber - 1; i++) {//Need -1 because handles is 1 less than event number
+            var probability = parseFloat(events.eq(i).attr('data-eventprobability'));
+            handleposition += probability;
+            handlesarray.push(handleposition);
+        }
+        //Create slider
+        noUiSlider.create(slider, {
+            start: handlesarray,
+            step: 0.01,
+            range: {
+            'min': 0,
+            'max': 1
+            },
+            margin: 0.01,
+            padding: 0.01,
+            orientation: 'vertical',
+            keyboardSupport: true
+        })
+        //Update slider
+        slider.noUiSlider.on('update', function(values) {
+            for(i = 0; i < 2; i++) {
+                var probability;
+                if(i === 0) {probability = values[0]};
+                if(i === 1) {probability = 1 - values[i-1]};
+                var formattedprobability = (probability * 100).toLocaleString(undefined, {maximumFractionDigits: 0});
+                events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
+            }
+        });
+    });
+
+
     //CARD INTERACTIONS**********************
     //Card active function
     function activecard(e) {
