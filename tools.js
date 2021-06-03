@@ -180,4 +180,11 @@ $(function() {
 
 
 
+    //ADD CARD**********************
+    $('.plan-wrapper').on('click', '.new-card-plus', function() {
+        var endcard = $(this).closest('.end-card')
+        var newcard = $('.plan-components').find('.card');
+        newcard.clone().insertAfter(endcard);
+        endcard.remove();
+    });
 });//END
