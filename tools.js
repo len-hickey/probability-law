@@ -123,11 +123,14 @@ $(function() {
         $('.plan-wrapper.js-card-active').removeClass('js-card-active');
         }
     });
+    /*
     //Remove event active class when event name blurs
     $('.plan-wrapper').on('blur', '.event-name', function () {
         $(this).closest('.event').removeClass('js-event-active');
         $(this).closest('.card').removeClass('js-card-active');
     });
+    */
+
     //HOVER CARDS
     $('.plan-wrapper').on('mouseover', '.end-card', function(e) {
         e.stopPropagation();
@@ -142,28 +145,23 @@ $(function() {
     $('.plan-wrapper').on('mouseenter', '.end-results-wrapper', function() {
         var el = $(this);//Necessary for setTimeout to work
         endresultshovertimeout = setTimeout(function() {
-        var planwrapper = $('.plan-wrapper');
-        planwrapper.find('.event-arrow').removeClass('js-opaque');
-        planwrapper.find('.end-results-sidebar-line').removeClass('js-active');
-        el.children('.event-arrow').addClass('js-opaque');
-        el.children('.end-results-header').addClass('js-opaque');
-        el.children('.end-card-probability').addClass('js-opaque');
-        el.closest('.end-card').prev('.end-results-sidebar-line').addClass('js-active');
-        //Animateeventpath
-        var ancestoreventdetails = el.parents('.card, .end-card').siblings('.event-details');
-        var ancestoreventarrows = ancestoreventdetails.find('.event-arrow');
-        ancestoreventarrows.addClass('js-opaque');
+            var planwrapper = $('.plan-wrapper');
+            planwrapper.find('.event-arrow').removeClass('js-opaque');
+            el.children('.event-arrow').addClass('js-opaque');
+            el.children('.end-results-header').addClass('js-opaque');
+            //Animateeventpath
+            var ancestoreventdetails = el.parents('.card, .end-card').siblings('.event-details');
+            var ancestoreventarrows = ancestoreventdetails.find('.event-arrow');
+            ancestoreventarrows.addClass('js-opaque');
         }, 200);
     }).on('mouseleave', '.end-results-wrapper', function() {
         var planwrapper = $('.plan-wrapper');
         clearTimeout(endresultshovertimeout);
         planwrapper.find('.end-results-header').removeClass('js-opaque');
-        planwrapper.find('.end-card-probability').removeClass('js-opaque');
         planwrapper.find('.event-arrow').removeClass('js-opaque');
-        planwrapper.find('.end-results-sidebar-line').removeClass('js-active');
-        planwrapper.find('.event-name').css('top','');
-        planwrapper.find('.event-arrow').css({'top':'', 'bottom':''});
     });
+
+    /*
     //ON FOCUS EVENT NAME
     $('.plan-wrapper').on('click focus', '.event-name', function() {
         $(this).siblings('.event-arrow').addClass('js-opaque');
@@ -177,9 +175,9 @@ $(function() {
         $('.event-name').css('top','');
         $('.event-arrow').css({'top':'', 'bottom':''});
     });
+    */
 
-
-
+    /*
     //ADD CARD**********************
     $('.plan-wrapper').on('click', '.new-card-plus', function() {
         var endcard = $(this).closest('.end-card')
@@ -187,4 +185,6 @@ $(function() {
         newcard.clone().insertAfter(endcard);
         endcard.remove();
     });
+    */
+
 });//END
