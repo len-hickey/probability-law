@@ -56,7 +56,7 @@ $(function() {
         scaleinfo.removeClass('js-visible');
         if(value != '') {
             scaleinfo.addClass('js-visible');
-            scaleinfocomponents.children().eq($(this).prop('selectedIndex')).addClass('js-visible');
+            scaleinfocomponents.children().eq($(this).prop('selectedIndex') - 1).addClass('js-visible');
         }
         else {
             scaleinfo.removeClass('js-visible');
