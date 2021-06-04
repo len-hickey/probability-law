@@ -36,6 +36,7 @@ $(function() {
     //Word select
     $(document).on('change', '.word-select', function() {
         var value = $(this).val();
+        //Set marker
         var marker = $('.scale-marker');
         if(value != '') {
             var array = value.split('-');
@@ -47,6 +48,24 @@ $(function() {
         else {
             marker.css('left', '50%');
             marker.css('width', '0%');
+        }
+        //Set info
+        var scaleinfo = $('.scale-info');
+        var scaleinfoword = scaleinfo.find('.scale-info-word');
+        var scaleinfostart = scaleinfo.find('.scale-info-start');
+        var scaleinfoend = scaleinfo.find('.scale-info-end');
+        var scaleinfocomponents = scaleinfo.find('.scale-info-components');
+        var optionindex = $(this).prop('selectedIndex');
+        scaleinfocomponents.children().removeClass('js-visible');
+        if(value != '') {
+            scaleinfo.addClass('js-visible');
+            scaleinfocomponents.children(optionindex).addClass('js-visible');
+            scaleinfoword.text($(this).find('option:selected').text());
+            scaleinfostart.text(start);
+            scaleinfoend.text(parseInt(start) + parseInt(width));
+        }
+        else {
+            scaleinfo.removeClass('js-visible');
         }
     });
 
