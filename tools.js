@@ -92,6 +92,7 @@ $(function() {
             keyboardSupport: true
         })
         //Update slider
+        var endcard = $('.plan-wrapper').find('.end-card');
         slider.noUiSlider.on('update', function(values) {
             for(i = 0; i < 2; i++) {
                 var probability;
@@ -101,6 +102,16 @@ $(function() {
                 events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
                 events.eq(i).attr('data-eventprobability', probability)
             }
+            endcard.each(function() {
+                var ancestorevents = $(this).parents('.event');
+                var probabilityvalue = 1;
+                ancestorevents.each(function() {
+                    var eventprobability = parseFloat($(this).attr('data-eventprobability'));
+                    probabilityvalue *= eventprobability;
+                });
+                probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
+                $(this).find('.probability-value').text(probabilityvalue2);
+            });
         });
     });
     //Hide edit probabilities event arrows if click outside
