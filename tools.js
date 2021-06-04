@@ -13,6 +13,7 @@ $(function() {
     });
 
     //*************************************TOOL 1*************************************
+    /*
     //Slider
     var sliderwrapper = $('.slider-wrapper');
     //Set element IDs for noUiSlider
@@ -30,7 +31,24 @@ $(function() {
     },
     keyboardSupport: true
     })
+    */
 
+    //Word select
+    $(document).on('change', '.word-select', function() {
+        var value = $(this).val();
+        var marker = $('.scale-marker');
+        if(value != '') {
+            var array = value.split('-');
+            var start = array[0];
+            var width = array[1];
+            marker.css('left', start + '%');
+            marker.css('width', width + '%');
+        }
+        else {
+            marker.css('left', '50%');
+            marker.css('width', '0%');
+        }
+    });
 
     //*************************************TOOL 2*************************************
     //DROPDOWNS
