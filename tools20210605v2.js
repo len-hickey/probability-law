@@ -52,12 +52,11 @@ $(function() {
         //Set info
         var scaleinfo = $('.scale-info');
         var scaleinfocomponents = scaleinfo.find('.scale-info-components');
-        var optionindex = $(this).prop('selectedIndex');
         scaleinfocomponents.children().removeClass('js-visible');
         scaleinfo.removeClass('js-visible');
         if(value != '') {
             scaleinfo.addClass('js-visible');
-            scaleinfocomponents.children(optionindex).addClass('js-visible');
+            scaleinfocomponents.children().eq($(this).prop('selectedIndex')).addClass('js-visible');
         }
         else {
             scaleinfo.removeClass('js-visible');
