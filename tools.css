@@ -58,23 +58,23 @@ select {
 }
 
 /*Scroll bar styling*/
-.plan-wrapperr::-webkit-scrollbar {
+.plan-wrapper::-webkit-scrollbar {
   width: 18px;
   height: 18px;
 }
-.plan-wrapperr::-webkit-scrollbar-thumb {
+.plan-wrapper::-webkit-scrollbar-thumb {
   border-radius: 12px;
   border: 6px solid rgba(0, 0, 0, 0);
   background: rgba(0,0,0,.15);
   background-clip: padding-box;
 }
-.plan-wrapperr::-webkit-scrollbar-thumb:hover {
+.plan-wrapper::-webkit-scrollbar-thumb:hover {
   border-radius: 12px;
   border: 5px solid rgba(0, 0, 0, 0);
   background: rgba(0,0,0,.25);
   background-clip: padding-box;
 }
-.plan-wrapperr::-webkit-scrollbar-corner {
+.plan-wrapper::-webkit-scrollbar-corner {
   display: none;
   height: 0px;
   width: 0px;
