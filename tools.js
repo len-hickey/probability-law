@@ -105,7 +105,7 @@ $(function() {
     });
     //Hide edit probabilities event arrows if click outside
     $(document).on('click', function (e) {
-        if(!$(e.target).closest('.end-card').length) {
+        if(!$(e.target).closest('.dropdown').length && !$(e.target).closest('.end-card').length) {
             var planwrapper = $('.plan-wrapper');
             planwrapper.find('.event-arrow').removeClass('js-opaque');
         }
