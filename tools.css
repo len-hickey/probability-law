@@ -57,6 +57,29 @@ select {
   opacity: 1 !important;
 }
 
+/*Scroll bar styling*/
+.plan-wrapperr::-webkit-scrollbar {
+  width: 18px;
+  height: 18px;
+}
+.plan-wrapperr::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  border: 6px solid rgba(0, 0, 0, 0);
+  background: rgba(0,0,0,.15);
+  background-clip: padding-box;
+}
+.plan-wrapperr::-webkit-scrollbar-thumb:hover {
+  border-radius: 12px;
+  border: 5px solid rgba(0, 0, 0, 0);
+  background: rgba(0,0,0,.25);
+  background-clip: padding-box;
+}
+.plan-wrapperr::-webkit-scrollbar-corner {
+  display: none;
+  height: 0px;
+  width: 0px;
+}
+
 /**********************************nouislider-14.0.2-6/28/2019**********************************/
 .noUi-target,
 .noUi-target * {
