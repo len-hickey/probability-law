@@ -67,7 +67,13 @@ $(function() {
         var cardheader = $(this).closest('.card-header');
         var probmenu = cardheader.find('.edit-probabilities-menu');
         var sliderwrapper = probmenu.find('.edit-probabilities-slider-wrapper');
-        $('.edit-probabilities-slider-wrapper').children().remove();//Remove children from all slider wrappers
+        //Show event arrows
+        events.children('.event-details').find('.event-arrow').addClass('js-opaque');
+        var ancestoreventdetails = $(this).parents('.card, .end-card').siblings('.event-details');
+        var ancestoreventarrows = ancestoreventdetails.find('.event-arrow');
+        ancestoreventarrows.addClass('js-opaque');
+        //Remove children from all slider wrappers
+        $('.edit-probabilities-slider-wrapper').children().remove();
         sliderwrapper.append('<div id="probabilityslider" style="height: 200px"></div>');
         var slider = document.getElementById('probabilityslider');
         //Create sliders based on events number
