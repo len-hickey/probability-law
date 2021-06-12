@@ -62,6 +62,12 @@ $(function() {
             scaleinfo.removeClass('js-visible');
         }
     });
+    //More tips
+	$(document).on('click', '.scale-info-show-tips-button', function() {
+        $(this).next('.scale-info-tips-wrapper').addClass('js-visible');
+        $(this).addClass('js-hidden');
+    });
+
 
     //*************************************TOOL 2*************************************
     //DROPDOWNS
@@ -91,8 +97,55 @@ $(function() {
         }
     });
 
+    //Unlink issue probabilities switch results switch
+    $(document).on('click', '.issues-switch', function() {
+        //Toggle switch
+        $(this).toggleClass('js-active');
+        $(this).children('.switch-knob').toggleClass('js-active');
+        //Toggle End results sidebar
+        if(!$(this).hasClass('js-active')) {//Switch turned off
+            var planwrapper = $('.plan-wrapper')
+            //Issue 2
+            var issue2cards = planwrapper.find('.card-issue-2');
+            for(i = 0; i < 2; i++) {
+                if(i=0) {
+                    var prob1 = issue2cards.eq(i).children('.event').eq(0).attr('data-eventprobability')
+                    var prob1formatted = (prob1 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
+                    var prob2 = issue2cards.eq(i).children('.event').eq(1).attr('data-eventprobability')
+                    var prob2formatted = (prob2 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
+                }
+                else {
+                    issue2cards.eq(i).children('.event').eq(0).attr('data-eventprobability', prob1)
+                    issue2cards.eq(i).children('.event').eq(0).children('.event-details').find('.probability-value').text(prob1formatted)
+                    issue2cards.eq(i).children('.event').eq(1).attr('data-eventprobability', prob2)
+                    issue2cards.eq(i).children('.event').eq(1).children('.event-details').find('.probability-value').text(prob2formatted)
+                }
+            }
+            //Issue 3
+            var issue3cards = planwrapper.find('.card-issue-3');
+            for(i = 0; i < 4; i++) {
+                if(i=0) {
+                    var prob1 = issue3cards.eq(i).children('.event').eq(0).attr('data-eventprobability')
+                    var prob1formatted = (prob1 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
+                    var prob2 = issue3cards.eq(i).children('.event').eq(1).attr('data-eventprobability')
+                    var prob2formatted = (prob2 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
+                }
+                else {
+                    issue3cards.eq(i).children('.event').eq(0).attr('data-eventprobability', prob1)
+                    issue3cards.eq(i).children('.event').eq(0).children('.event-details').find('.probability-value').text(prob1formatted)
+                    issue3cards.eq(i).children('.event').eq(1).attr('data-eventprobability', prob2)
+                    issue3cards.eq(i).children('.event').eq(1).children('.event-details').find('.probability-value').text(prob2formatted)
+                }
+            }
+        }
+        if($(this).hasClass('js-active')) {//Switch turned on
+
+        }
+    });
+
     //EDIT PROBABILITIES
     $('.plan-wrapper').on('click', '.card-menu-button', function() {
+        var planwrapper = $('.plan-wrapper');
         var card = $(this).closest('.card');
         var events = card.children('.event');
         var cardheader = $(this).closest('.card-header');
@@ -123,26 +176,36 @@ $(function() {
             keyboardSupport: true
         })
         //Update slider
-        var endcard = $('.plan-wrapper').find('.end-card');
+        var cards;
+        var endcards = planwrapper.find('.end-card');
+        var issuesswitch = $('.issues-switch');
+        if(issuesswitch.hasClass('js-active')) {cards = card}
+        else {
+            if(card.hasClass('card-issue-1')) {cards = card}
+            if(card.hasClass('card-issue-2')) {cards = planwrapper.find('card-issue-2')}
+            if(card.hasClass('card-issue-3')) {cards = planwrapper.find('card-issue-3')}
+        }
         slider.noUiSlider.on('update', function(values) {
-            for(i = 0; i < 2; i++) {
-                var probability;
-                if(i === 0) {probability = values[0]};
-                if(i === 1) {probability = 1 - values[0]};
-                var formattedprobability = (probability * 100).toLocaleString(undefined, {maximumFractionDigits: 0});
-                events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
-                events.eq(i).attr('data-eventprobability', probability)
-            }
-            endcard.each(function() {
-                var ancestorevents = $(this).parents('.event');
-                var probabilityvalue = 1;
-                ancestorevents.each(function() {
-                    var eventprobability = parseFloat($(this).attr('data-eventprobability'));
-                    probabilityvalue *= eventprobability;
+            cards.each(function(){
+                for(i = 0; i < 2; i++) {
+                    var probability;
+                    if(i === 0) {probability = values[0]};
+                    if(i === 1) {probability = 1 - values[0]};
+                    var formattedprobability = (probability * 100).toLocaleString(undefined, {maximumFractionDigits: 0});
+                    events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
+                    events.eq(i).attr('data-eventprobability', probability)
+                }
+                endcards.each(function() {
+                    var ancestorevents = $(this).parents('.event');
+                    var probabilityvalue = 1;
+                    ancestorevents.each(function() {
+                        var eventprobability = parseFloat($(this).attr('data-eventprobability'));
+                        probabilityvalue *= eventprobability;
+                    });
+                    probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
+                    $(this).find('.probability-value').text(probabilityvalue2);
                 });
-                probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
-                $(this).find('.probability-value').text(probabilityvalue2);
-            });
+            })
         });
     });
     //Hide edit probabilities event arrows if click outside
