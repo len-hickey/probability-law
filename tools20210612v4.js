@@ -211,7 +211,7 @@ $(function() {
     });
 
     function endcardupdate() {
-        $('.plan-wrapper').find('end-card').each(function() {
+        $('.plan-wrapper').find('.end-card').each(function() {
             var ancestorevents = $(this).parents('.event');
             var probabilityvalue = 1;
             ancestorevents.each(function() {
