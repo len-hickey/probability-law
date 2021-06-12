@@ -108,7 +108,7 @@ $(function() {
             //Issue 2
             var issue2cards = planwrapper.find('.card-issue-2');
             for(i = 0; i < 2; i++) {
-                if(i=0) {
+                if(i === 0) {
                     var prob1 = issue2cards.eq(i).children('.event').eq(0).attr('data-eventprobability')
                     var prob1formatted = (prob1 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
                     var prob2 = issue2cards.eq(i).children('.event').eq(1).attr('data-eventprobability')
@@ -124,7 +124,7 @@ $(function() {
             //Issue 3
             var issue3cards = planwrapper.find('.card-issue-3');
             for(i = 0; i < 4; i++) {
-                if(i=0) {
+                if(i === 0) {
                     var prob1 = issue3cards.eq(i).children('.event').eq(0).attr('data-eventprobability')
                     var prob1formatted = (prob1 * 100).toLocaleString(undefined, {maximumFractionDigits: 0})
                     var prob2 = issue3cards.eq(i).children('.event').eq(1).attr('data-eventprobability')
@@ -187,6 +187,7 @@ $(function() {
         }
         slider.noUiSlider.on('update', function(values) {
             cards.each(function(){
+                events = $(this).children('.event');
                 for(i = 0; i < 2; i++) {
                     var probability;
                     if(i === 0) {probability = values[0]};
@@ -195,17 +196,17 @@ $(function() {
                     events.eq(i).children('.event-details').find('.probability-value').text(formattedprobability);
                     events.eq(i).attr('data-eventprobability', probability)
                 }
-                endcards.each(function() {
-                    var ancestorevents = $(this).parents('.event');
-                    var probabilityvalue = 1;
-                    ancestorevents.each(function() {
-                        var eventprobability = parseFloat($(this).attr('data-eventprobability'));
-                        probabilityvalue *= eventprobability;
-                    });
-                    probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    $(this).find('.probability-value').text(probabilityvalue2);
-                });
             })
+            endcards.each(function() {
+                var ancestorevents = $(this).parents('.event');
+                var probabilityvalue = 1;
+                ancestorevents.each(function() {
+                    var eventprobability = parseFloat($(this).attr('data-eventprobability'));
+                    probabilityvalue *= eventprobability;
+                });
+                probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
+                $(this).find('.probability-value').text(probabilityvalue2);
+            });
         });
     });
     //Hide edit probabilities event arrows if click outside
