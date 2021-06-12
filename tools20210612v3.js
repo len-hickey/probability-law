@@ -137,6 +137,8 @@ $(function() {
                     issue3cards.eq(i).children('.event').eq(1).children('.event-details').find('.probability-value').text(prob2formatted)
                 }
             }
+            //End card update
+            endcardupdate();
         }
         if($(this).hasClass('js-active')) {//Switch turned on
 
@@ -177,13 +179,12 @@ $(function() {
         })
         //Update slider
         var cards;
-        var endcards = planwrapper.find('.end-card');
         var issuesswitch = $('.issues-switch');
         if(issuesswitch.hasClass('js-active')) {cards = card}
         else {
             if(card.hasClass('card-issue-1')) {cards = card}
-            if(card.hasClass('card-issue-2')) {cards = planwrapper.find('card-issue-2')}
-            if(card.hasClass('card-issue-3')) {cards = planwrapper.find('card-issue-3')}
+            if(card.hasClass('card-issue-2')) {cards = planwrapper.find('.card-issue-2')}
+            if(card.hasClass('card-issue-3')) {cards = planwrapper.find('.card-issue-3')}
         }
         slider.noUiSlider.on('update', function(values) {
             cards.each(function(){
@@ -197,16 +198,8 @@ $(function() {
                     events.eq(i).attr('data-eventprobability', probability)
                 }
             })
-            endcards.each(function() {
-                var ancestorevents = $(this).parents('.event');
-                var probabilityvalue = 1;
-                ancestorevents.each(function() {
-                    var eventprobability = parseFloat($(this).attr('data-eventprobability'));
-                    probabilityvalue *= eventprobability;
-                });
-                probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
-                $(this).find('.probability-value').text(probabilityvalue2);
-            });
+            //End card update
+            endcardupdate()
         });
     });
     //Hide edit probabilities event arrows if click outside
@@ -217,6 +210,18 @@ $(function() {
         }
     });
 
+    function endcardupdate() {
+        $('.plan-wrapper').find('end-card').each(function() {
+            var ancestorevents = $(this).parents('.event');
+            var probabilityvalue = 1;
+            ancestorevents.each(function() {
+                var eventprobability = parseFloat($(this).attr('data-eventprobability'));
+                probabilityvalue *= eventprobability;
+            });
+            probabilityvalue2 = (probabilityvalue * 100).toLocaleString(undefined, {maximumFractionDigits: 2});
+            $(this).find('.probability-value').text(probabilityvalue2);
+        });
+    }
 
     //CARD INTERACTIONS**********************
     //Card active function
