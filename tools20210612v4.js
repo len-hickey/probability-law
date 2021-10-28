@@ -34,10 +34,10 @@ $(function() {
     */
 
     //Word select
-    $(document).on('change', '.word-select', function() {
+    $(document).on('change', '.probability-aide-word-select', function() {
         var value = $(this).val();
         //Set marker
-        var marker = $('.scale-marker');
+        var marker = $('.probability-aide-scale-marker');
         if(value != '') {
             var array = value.split('-');
             var start = array[0];
@@ -50,8 +50,8 @@ $(function() {
             marker.css('width', '0%');
         }
         //Set info
-        var scaleinfo = $('.scale-info');
-        var scaleinfocomponents = scaleinfo.find('.scale-info-components');
+        var scaleinfo = $('.probability-aide-scale-info');
+        var scaleinfocomponents = scaleinfo.find('.probability-aide-vscale-info-components');
         scaleinfocomponents.children().removeClass('js-visible');
         scaleinfo.removeClass('js-visible');
         if(value != '') {
@@ -63,8 +63,8 @@ $(function() {
         }
     });
     //More tips
-	$(document).on('click', '.scale-info-show-tips-button', function() {
-        $(this).next('.scale-info-tips-wrapper').addClass('js-visible');
+	$(document).on('click', '.probability-aide-scale-info-show-tips-button', function() {
+        $(this).next('.probability-aide-scale-info-tips-wrapper').addClass('js-visible');
         $(this).addClass('js-hidden');
     });
 
