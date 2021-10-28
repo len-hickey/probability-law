@@ -50,21 +50,18 @@ $(function() {
             marker.css('width', '0%');
         }
         //Set info
-        var scaleinfo = $('.probability-aide-scale-info');
-        var scaleinfocomponents = scaleinfo.find('.probability-aide-vscale-info-components');
-        scaleinfocomponents.children().removeClass('js-visible');
-        scaleinfo.removeClass('js-visible');
+        var infoandtips = $('.probability-aide-info-and-tips');
+        var info = infoandtips.find('.probability-aide-info');
+        info.children().removeClass('js-visible');
+        infoandtips.removeClass('js-visible');
         if(value != '') {
-            scaleinfo.addClass('js-visible');
-            scaleinfocomponents.children().eq($(this).prop('selectedIndex') - 1).addClass('js-visible');
-        }
-        else {
-            scaleinfo.removeClass('js-visible');
+            infoandtips.addClass('js-visible');
+            info.children().eq($(this).prop('selectedIndex') - 1).addClass('js-visible');
         }
     });
     //More tips
-	$(document).on('click', '.probability-aide-scale-info-show-tips-button', function() {
-        $(this).next('.probability-aide-scale-info-tips-wrapper').addClass('js-visible');
+    $(document).on('click', '.probability-aide-show-tips-button', function() {
+        $(this).next('.probability-aide-tips-wrapper').addClass('js-visible');
         $(this).addClass('js-hidden');
     });
 
